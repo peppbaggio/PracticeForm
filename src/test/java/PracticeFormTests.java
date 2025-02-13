@@ -1,23 +1,23 @@
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 
 public class PracticeFormTests {
 
     @BeforeAll
-    static void beforeAll() {
+    static void configSetup() {
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
     }
 
 //    @AfterAll
-//    static void afterAll() {
+//    static void holdBrowserOpen() {
 //        sleep(600_000);
 //    }
 
@@ -27,10 +27,10 @@ public class PracticeFormTests {
         $("#firstName").scrollIntoView(true).setValue("Max");
         $("#lastName").scrollIntoView(true).setValue("Frix");
         $("#userEmail").scrollIntoView(true).setValue("frix@frix.ii");
+        $("#userNumber").scrollIntoView(true).setValue("1234567890");
 
         // Поле Gender
         $("[for=gender-radio-1]").scrollIntoView(true).click();
-        $("#userNumber").scrollIntoView(true).setValue("1234567890");
 
         // Календарь
         $("#dateOfBirthInput").click();
