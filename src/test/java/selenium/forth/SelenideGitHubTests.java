@@ -1,4 +1,4 @@
-package fourth;
+package selenium.forth;
 
 import com.codeborne.selenide.Configuration;
 
