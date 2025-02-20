@@ -1,4 +1,4 @@
-package selenium.forth;
+package selenide.forth;
 
 import com.codeborne.selenide.Configuration;
 
@@ -18,7 +18,7 @@ static void configSetup() {
 }
 
 @Test
-    void checkSelenidePage() {
+    void checkSelenidePageTest() {
 
     open("/selenide/selenide");
     $("#wiki-tab").click();
