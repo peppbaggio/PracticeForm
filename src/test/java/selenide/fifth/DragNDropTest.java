@@ -25,6 +25,9 @@ public class DragNDropTest {
         $("#column-a header").shouldHave(text("B"));
     }
 
+
+
+    // dragAndDrop работает только с DragAndDropOptions.to
     @Test
     void dragNDropTest () {
         open("/drag_and_drop");
