@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 
 
-public class GitHubEnterprize {
+public class GitHubEnterprizeTest {
 
 
     @BeforeAll
