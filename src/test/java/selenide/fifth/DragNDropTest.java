@@ -17,7 +17,7 @@ public class DragNDropTest {
     }
 
     @Test
-    void dragNDropTest () {
+    void dragNDropActionTest () {
         open("/drag_and_drop");
 
         actions().moveToElement($("#column-a")).clickAndHold()
@@ -26,7 +26,7 @@ public class DragNDropTest {
     }
 
     @Test
-    void dragNDropElementTest () {
+    void dragNDropTest () {
         open("/drag_and_drop");
         $("#column-a").dragAndDrop(DragAndDropOptions.to("#column-b"));
         $("#column-a header").shouldHave(text("B"));
