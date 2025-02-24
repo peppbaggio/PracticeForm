@@ -3,6 +3,7 @@ package selenide.fifth;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.DragAndDropOptions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -15,6 +16,14 @@ public class DragNDropTest {
         Configuration.baseUrl = "https://the-internet.herokuapp.com";
         Configuration.pageLoadStrategy = "eager";
     }
+
+    @BeforeEach
+    void checkPageState() {
+        open("/drag_and_drop");
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
+    }
+
 
     @Test
     void dragNDropActionTest () {
