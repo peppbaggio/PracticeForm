@@ -1,9 +1,10 @@
 import com.codeborne.selenide.Configuration;
+
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +17,17 @@ public class PracticeFormTests {
         Configuration.baseUrl = "https://demoqa.com";
     }
 
-//    @AfterAll
-//    static void holdBrowserOpen() {
-//        sleep(600_000);
-//    }
 
-    @Test
-    void practiceFormTests() {
+   @Test
+    void practiceFormCompleteTests() {
         open("/automation-practice-form");
+
+        // проверить, что страница открылась
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+        // Удаление баннеров
+        executeJavaScript("$('#fixedban').remove");
+
         $("#firstName").scrollIntoView(true).setValue("Max");
         $("#lastName").scrollIntoView(true).setValue("Frix");
         $("#userEmail").scrollIntoView(true).setValue("frix@frix.ii");
@@ -58,6 +62,10 @@ public class PracticeFormTests {
 
         $("#submit").scrollIntoView(true).click();
 
+        // Проверить, что таблица появилась
+        $(".modal-dialog").should(appear);
+        $("#example-modal-sizes-title-lg")
+                .shouldHave(text("Thanks for submitting the form"));
 
         $(".table-responsive").shouldHave(text("Max Frix"));
         $(".table-responsive").shouldHave(text("frix@frix.ii"));
@@ -70,4 +78,6 @@ public class PracticeFormTests {
         $(".table-responsive").scrollIntoView(true).shouldHave(text("State Town Street"));
         $(".table-responsive").scrollIntoView(true).shouldHave(text("Haryana")).shouldHave(text("Panipat"));
     }
+
+
 }
