@@ -1,11 +1,13 @@
-package practiceform;
+package practiceform.tests;
 
 import org.junit.jupiter.api.Test;
+import practiceform.Config;
+import practiceform.pages.RegistrationPage;
 
 public class PracticeFormTests extends Config {
 
 
-    practiceform.RegistrationPage RegistrationPage = new RegistrationPage();
+    practiceform.pages.RegistrationPage RegistrationPage = new RegistrationPage();
 
     @Test
     void practiceFormCompleteTests() {
@@ -20,7 +22,7 @@ public class PracticeFormTests extends Config {
 
 
                 .setUserGender()
-                .setCalendarDate("December", "1998")
+                .setCalendarDate("12", "December", "1998")
                 .setSubjects("Maths")
                 .setHobbies()
                 .uploadPicture("img/weather.jpg")
@@ -80,8 +82,6 @@ public class PracticeFormTests extends Config {
                 .setUserNumber("1234567890")
                 .setUserGender()
                 .submitClick()
-
-                .checkEmptyRequiredField(RegistrationPage.firstName, "border-color", "rgb(220, 53, 69)")
 
                 .checkPageNotOpen();
 

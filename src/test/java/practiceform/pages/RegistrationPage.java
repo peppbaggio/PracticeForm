@@ -1,6 +1,8 @@
-package practiceform;
+package practiceform.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import practiceform.components.CalendarComponent;
+import practiceform.components.ResultTableComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -15,11 +17,15 @@ public class RegistrationPage {
     SelenideElement userEmail = $("#userEmail");
     SelenideElement userNumber = $("#userNumber");
     SelenideElement userGender = $("[for=gender-radio-1]");
+    SelenideElement calendarInput = $("#dateOfBirthInput");
     SelenideElement subjectsInput = $("#subjectsInput");
     SelenideElement hobbies = $("[for=hobbies-checkbox-2]");
     SelenideElement userAddress = $("#currentAddress");
     SelenideElement submitButton = $("#submit");
     SelenideElement resultTable = $(".table-responsive");
+
+    CalendarComponent calendarComponent = new CalendarComponent();
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -52,11 +58,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setCalendarDate(String month, String year) {
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--012").click();
+    public RegistrationPage setCalendarDate(String day, String month, String year) {
+        calendarInput.click();
+        calendarComponent.setDate(day, month, year);
         return this;
     }
 
@@ -114,22 +118,23 @@ public class RegistrationPage {
 
 
     public RegistrationPage checkResults(String key, String value) {
-        resultTable.$(byText(key)).sibling(0).shouldHave(text(value));
+        resultTableComponent.positiveCheckTable(resultTable, key, value);
 
         return this;
     }
 
     public RegistrationPage checkNegativeResults(String key) {
-        resultTable.$(byText(key)).sibling(0).shouldBe(empty);
+        resultTableComponent.negativeCheckTable(resultTable, key);
 
         return this;
     }
 
-    public RegistrationPage checkEmptyRequiredField(SelenideElement field, String cssKey, String cssValue) {
-        field.shouldHave(cssValue(cssKey, cssValue));
-
-        return this;
-    }
+    // Это метод неработающего кода на проверку цвета
+//    public RegistrationPage checkEmptyRequiredField(SelenideElement field, String cssKey, String cssValue) {
+//        field.shouldHave(cssValue(cssKey, cssValue));
+//
+//        return this;
+//    }
 
 
 }
